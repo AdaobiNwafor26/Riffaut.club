@@ -18,7 +18,7 @@ import openai
 
 # --- 1. OpenAI API Key Setup ---
 
-openai_api_key = os.getenv('OPEN_API_KEY')
+openai_api_key = os.getenv('OPENAI_API_KEY')
 client = OpenAI(api_key=openai_api_key)
 
 # --- 2. Functions for Modularization ---
