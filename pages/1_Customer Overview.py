@@ -17,11 +17,11 @@ import plotly.express as px
 import openai
 
 # --- 1. OpenAI API Key Setup ---
-st.write('OPENAI_API_KEY:', os.getenv('OPENAI_API_KEY'))
+# st.write('OPENAI_API_KEY:', os.getenv('OPENAI_API_KEY'))
 
 
-openai_api_key = os.getenv('OPENAI_API_KEY')
-client = OpenAI(api_key=openai_api_key)
+# openai_api_key = os.getenv('OPENAI_API_KEY')
+# client = OpenAI(api_key=openai_api_key)
 
 # --- 2. Functions for Modularization ---
 
@@ -244,24 +244,24 @@ def create_churn_probability_heatmap(cust_churn_data, churn_column='churn_proba'
 
 
 # Generate interpretation using OpenAI GPT
-def generate_interpretation(data, period):
-    prompt = f"""
-    Here is the {period} churn rate data: {data}.
-    Please provide an interpretation that highlights any significant trends, such as high or low churn rates, and suggests potential actions or insights that could be drawn from this data.
-    Provide any suggestions you would give the business owner in order to solve this problem.
-    """
+# def generate_interpretation(data, period):
+#     prompt = f"""
+#     Here is the {period} churn rate data: {data}.
+#     Please provide an interpretation that highlights any significant trends, such as high or low churn rates, and suggests potential actions or insights that could be drawn from this data.
+#     Provide any suggestions you would give the business owner in order to solve this problem.
+#     """
 
-    response = client.chat.completions.create(
-        model="gpt-3.5-turbo",  # Use "gpt-4" if you have access to GPT-4
-        messages=[
-            {"role": "system", "content": "You are an expert data scientist with a client in your consultancy."},
-            {"role": "user", "content": prompt}
-        ],
-        max_tokens=150,
-        temperature=0.7
-    )
+#     response = client.chat.completions.create(
+#         model="gpt-3.5-turbo",  # Use "gpt-4" if you have access to GPT-4
+#         messages=[
+#             {"role": "system", "content": "You are an expert data scientist with a client in your consultancy."},
+#             {"role": "user", "content": prompt}
+#         ],
+#         max_tokens=150,
+#         temperature=0.7
+#     )
 
-    return response.choices[0].message.content.strip()
+#     return response.choices[0].message.content.strip()
 
 
 # --- 3. Session State Management ---
@@ -316,12 +316,12 @@ with tab1:
         # Display the churn rate line chart
         create_churn_line_chart(data, period_label, title)
 
-        # Button to trigger insights
-        if st.button("Generate Insights", key='insights_churn_monthly'):
-            data_str = data.to_string(index=False)
-            insights = generate_interpretation(data_str, period_label)
-            st.markdown("### Insights")
-            st.markdown(insights)
+        # # Button to trigger insights
+        # if st.button("Generate Insights", key='insights_churn_monthly'):
+        #     data_str = data.to_string(index=False)
+        #     insights = generate_interpretation(data_str, period_label)
+        #     st.markdown("### Insights")
+        #     st.markdown(insights)
 
     with stab12:
 
@@ -337,12 +337,12 @@ with tab1:
         # Display the churn rate line chart
         create_churn_line_chart(data, period_label, title)
 
-        # Button to trigger insights
-        if st.button("Generate Insights", key='insights_churn_quarterly'):
-            data_str = data.to_string(index=False)
-            insights = generate_interpretation(data_str, period_label)
-            st.markdown("### Insights")
-            st.markdown(insights)
+        # # Button to trigger insights
+        # if st.button("Generate Insights", key='insights_churn_quarterly'):
+        #     data_str = data.to_string(index=False)
+        #     insights = generate_interpretation(data_str, period_label)
+        #     st.markdown("### Insights")
+        #     st.markdown(insights)
 
 with tab2:
     st.subheader('Retention Analytics')
@@ -365,12 +365,12 @@ with tab2:
         # Display the retention rate bar chart
         create_reten_bar_chart(data, period_label, title)
 
-        # Button to trigger insights
-        if st.button("Generate Insights", key='insights_reten_monthly'):
-            data_str = data.to_string(index=False)
-            insights = generate_interpretation(data_str, period_label)
-            st.markdown("### Insights")
-            st.markdown(insights)   
+        # # Button to trigger insights
+        # if st.button("Generate Insights", key='insights_reten_monthly'):
+        #     data_str = data.to_string(index=False)
+        #     insights = generate_interpretation(data_str, period_label)
+        #     st.markdown("### Insights")
+        #     st.markdown(insights)   
 
     with stab22:
         data = pd.DataFrame(st.session_state['customer_reten_quarterly'])
@@ -386,12 +386,12 @@ with tab2:
         # Display the retention rate bar chart
         create_reten_bar_chart(data, period_label, title)
 
-        # Button to trigger insights
-        if st.button("Generate Insights", key='insights_reten_quarterly'):
-            data_str = data.to_string(index=False)
-            insights = generate_interpretation(data_str, period_label)
-            st.markdown("### Insights")
-            st.markdown(insights)
+        # # Button to trigger insights
+        # if st.button("Generate Insights", key='insights_reten_quarterly'):
+        #     data_str = data.to_string(index=False)
+        #     insights = generate_interpretation(data_str, period_label)
+        #     st.markdown("### Insights")
+        #     st.markdown(insights)
 
 
 
@@ -450,12 +450,12 @@ with tab3:
     with coln:
         create_churn_probability_vs_cltv_scatter(data)
 
-        # Button to trigger insights
-    if st.button("Generate Insights", key='insights_churn_prob'):
-        data_str = data.to_string(index=False)
-        insights = generate_interpretation(data_str, period_label)
-        st.markdown("### Insights")
-        st.markdown(insights)
+    #     # Button to trigger insights
+    # if st.button("Generate Insights", key='insights_churn_prob'):
+    #     data_str = data.to_string(index=False)
+    #     insights = generate_interpretation(data_str, period_label)
+    #     st.markdown("### Insights")
+    #     st.markdown(insights)
 
 
 
@@ -480,10 +480,10 @@ with tab4:
     create_cltv_segment_bar_chart(segment_counts, 'Customer Segmentation by CLTV')
     # create_cltv_trend_line_chart(data, period_label, 'CLTV Over Time')
 
-    # Button to trigger insights
-    if st.button("Generate Insights", key='insights_cltv'):
-        data_str = data.to_string(index=False)
-        insights = generate_interpretation(data_str, period_label)
-        st.markdown("### Insights")
-        st.markdown(insights)
+    # # Button to trigger insights
+    # if st.button("Generate Insights", key='insights_cltv'):
+    #     data_str = data.to_string(index=False)
+    #     insights = generate_interpretation(data_str, period_label)
+    #     st.markdown("### Insights")
+    #     st.markdown(insights)
 
