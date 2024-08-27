@@ -11,11 +11,6 @@ from openai import OpenAI
 import numpy as np
 
 
-import streamlit as st
-import pandas as pd
-import plotly.express as px
-import openai
-
 # --------- 1. OpenAI API Key Setup  ------------
 
 
