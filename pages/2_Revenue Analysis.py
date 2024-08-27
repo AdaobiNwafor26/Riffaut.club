@@ -4,7 +4,7 @@ import plotly.graph_objects as go
 import seaborn as sns
 import matplotlib.pyplot as plt
 import pandas as pd
-from home import *
+from Home import *
 import openai
 import os
 from openai import OpenAI
