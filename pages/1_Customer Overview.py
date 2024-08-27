@@ -7,8 +7,6 @@ import pandas as pd
 import openai
 import os
 from openai import OpenAI
-import openai
-import os
 import numpy as np
 from home import *
 
