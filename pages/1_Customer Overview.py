@@ -17,6 +17,8 @@ import plotly.express as px
 import openai
 
 # --- 1. OpenAI API Key Setup ---
+st.write('OPENAI_API_KEY:', os.getenv('OPENAI_API_KEY'))
+
 
 openai_api_key = os.getenv('OPENAI_API_KEY')
 client = OpenAI(api_key=openai_api_key)
