@@ -127,8 +127,8 @@ def display_kpi_cltv_metrics(average_cltv, highest_cltv, lowest_cltv, min_cltv_p
     st.header('CLTV (Customer Lifetime Value) Insights')
     cold, cole, colf = st.columns(3)
     colf.metric("⤵︎ Lowest CLTV", f"{highest_cltv:.2f}%", f'in {max_cltv_period}')
-    cold.metric("⤴︎ Highest CLTV", f"{lowest_cltv:.2f}%", f'in {min_cltv_period}')
-    cole.metric("📈Average CLTV", f"{average_cltv:.2f}%")
+    cold.metric("⤴︎ Highest CLTV", f"{average_cltv:.2f}%", f'in {min_cltv_period}')
+    cole.metric("📈Average CLTV", f"{lowest_cltv:.2f}%")
 
 def create_cltv_scatter_chart(cltv_data, period_label, title, bar_color='violet'):
     fig = px.scatter(cltv_data, x=period_label, y='CLTV', size='Total Revenue', title=f'{title}',
